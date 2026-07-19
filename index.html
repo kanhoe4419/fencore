@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fen Core</title>
-    <!-- Importation d'une police ultra moderne et épurée -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIABLES DE COULEURS (Rouge doux et sombre) --- */
         :root {
-            --bg-color: #0a0a0a;       /* Fond encore plus sombre et moderne */
-            --card-bg: #121212;        /* Fond des cases d'artworks */
-            --text-color: #e5e5e5;     /* Texte blanc cassé doux */
-            --text-muted: #8c8c8c;     /* Texte secondaire gris */
-            --accent-red: #a81c1c;     /* Rouge principal élégant */
-            --hover-red: #e62e2e;      /* Rouge plus vif au survol */
+            --bg-color: #0a0a0a;
+            --card-bg: #121212;
+            --text-color: #e5e5e5;
+            --text-muted: #8c8c8c;
+            --accent-red: #a81c1c;
+            --hover-red: #e62e2e;
         }
 
-        /* --- STYLE GLOBAL --- */
+        /* --- STYLE  --- */
         * {
             margin: 0;
             padding: 0;
@@ -69,7 +67,7 @@
             border-bottom: 1px solid var(--hover-red);
         }
 
-        /* --- SECTION STRUCTURE --- */
+        /* --- SECTION --- */
         main {
             flex: 1;
             padding: 4rem;
@@ -79,10 +77,8 @@
         }
 
         .portfolio-section {
-            margin-bottom: 6rem; /* Grand espace pour faire respirer les deux projets */
+            margin-bottom: 6rem;
         }
-
-        /* Titres des sections */
         .section-header {
             display: flex;
             align-items: center;
@@ -93,13 +89,12 @@
 
         .section-title {
             font-size: 2.2rem;
-            font-weight: 300; /* Style fin et haut de gamme */
+            font-weight: 300;
             letter-spacing: 1px;
             position: relative;
             padding-left: 15px;
         }
 
-        /* Petite barre verticale rouge à gauche des titres */
         .section-title::before {
             content: '';
             position: absolute;
@@ -110,7 +105,6 @@
             background-color: var(--accent-red);
         }
 
-        /* Étiquette "Projet en cours" */
         .badge {
             background-color: rgba(168, 28, 28, 0.1);
             border: 1px solid rgba(168, 28, 28, 0.4);
@@ -131,24 +125,23 @@
             font-weight: 300;
         }
 
-        /* --- PORTFOLIO (GRID) --- */
+        /* --- PORTFOLIO --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* Toujours 5 colonnes sur grand écran */
+            grid-template-columns: repeat(7, 1fr);
             gap: 24px;
             width: 100%;
         }
 
         .artwork-item {
             background-color: var(--card-bg);
-            aspect-ratio: 3 / 4; /* Conserve ton format vertical 3000x4000px */
+            aspect-ratio: 3 / 4;
             border-radius: 4px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.03);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
         }
 
-        /* Effet élégant au survol */
         .artwork-item:hover {
             transform: translateY(-8px);
             border-color: rgba(168, 28, 28, 0.6);
@@ -157,8 +150,44 @@
         .artwork-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Recadre l'image sans la déformer si elle n'a pas le même format */
+            object-fit: cover;
             display: block;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translate(-50%, 100px);
+            background-color: rgba(168, 28, 28, 0.95);
+            color: #ffffff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+            opacity: 0;
+            z-index: 9999;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            transform: translate(-50%, 0);
+            opacity: 1;
         }
 
         /* --- FOOTER --- */
@@ -173,24 +202,24 @@
             margin-top: auto;
         }
 
-        /* --- RESPONSIVE (Adaptation mobiles et tablettes) --- */
+        /* --- TEL ND CO --- */
         @media (max-width: 1400px) {
-            .portfolio-grid { grid-template-columns: repeat(4, 1fr); } /* 4 par ligne */
+            .portfolio-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         @media (max-width: 1100px) {
-            .portfolio-grid { grid-template-columns: repeat(3, 1fr); } /* 3 par ligne */
+            .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
             header, main { padding: 2rem; }
         }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } /* 2 par ligne */
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .section-title { font-size: 1.8rem; }
         }
 
         @media (max-width: 480px) {
-            .portfolio-grid { grid-template-columns: 1fr; } /* 1 par ligne sur tout petit écran */
+            .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -198,13 +227,12 @@
 
     <header>
         <div class="logo">Fen Core</div>
-        <div class="contact-link">Contact me on <a href="https://instagram.com/TON_PSEUDO" target="_blank">Instagram</a></div>
+        <div class="contact-link">Contact me on <a href="https://instagram.com/fen.core" target="_blank">Instagram</a></div>
     </header>
 
     <main>
 
 
-        <!-- ================= SECTION 1: IN THE NAME OF ENTERTAINMENT ================= -->
         <section class="portfolio-section">
             <div class="section-header">
                 <h2 class="section-title">Recent works</h2>
@@ -213,31 +241,52 @@
             <p class="section-description">Personal projects, character designs and fanarts</p>
             
             <div class="portfolio-grid">
-                <!-- Placeholders temporaires pour ton nouveau projet pendant que tu le taffes -->
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+1" alt="Project Artwork 1"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+2" alt="Project Artwork 2"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+3" alt="Project Artwork 3"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+4" alt="Project Artwork 4"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+5" alt="Project Artwork 5"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/nXaeArq.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/hsX9oOK.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/vRXtd2l.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/9MpaIVS.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/SUMuH1s.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/jRkFGjX.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/2MThDYg.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/fBB3GlC.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/clV80ky.jpeg" alt="Project Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/qIbM2E0.jpeg" alt="Project Artwork"></div>
             </div>
         </section>
 
         
-        <!-- ================= SECTION 2: ENHYPEN ================= -->
         <section class="portfolio-section">
             <div class="section-header">
                 <h2 class="section-title">Enhypen</h2>
             </div>
             
             <div class="portfolio-grid">
-                <!-- Tu as juste à remplacer les liens de placeholders ci-dessous par tes vrais artworks Enhypen ! -->
-                <div class="artwork-item"><img src="https://i.imgur.com/1ky6hzy.jpeg" alt="Enhypen Artwork 1"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+2" alt="Enhypen Artwork 2"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+3" alt="Enhypen Artwork 3"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+4" alt="Enhypen Artwork 4"></div>
-                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+5" alt="Enhypen Artwork 5"></div>
-                
-                <!-- Tu peux en rajouter autant que tu veux ici, la grille se remplira automatiquement -->
+                <div class="artwork-item"><img src="https://i.imgur.com/1ky6hzy.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/XK9mkf9.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/2mnCrCo.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/UCerZXH.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/9Pg6Yky.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/AwqrNSL.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/f8RE6CT.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/xvFlWxa.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/RtwwDBG.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/KKBaFWU.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/zZVXNxo.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/4u3W4PT.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/yvcf3M9.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/c57kY5l.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/DvBIdTG.jpeg" alt="Enhypen Artwork"></div> dd
+                <div class="artwork-item"><img src="https://i.imgur.com/8uncdV7.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/muMlDra.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/tsYZ8QA.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/kz7CvOm.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/lBiX0xO.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/fIKjECm.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/0Rcsl6X.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/cASD6NT.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/S54YPIV.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/BBFIV7L.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/Py4ENLE.jpeg" alt="Enhypen Artwork"></div>
             </div>
         </section>
 
@@ -245,8 +294,39 @@
     </main>
 
     <footer>
-        <p>crédits fen core</p>
+        <p>© Fen Core</p>
     </footer>
+
+    <!-- Message d'alerte discret de protection -->
+    <div id="protection-toast" class="toast">© Artworks protégés par copyright — Fen Core</div>
+
+    <script>
+        // Bloquer le clic droit sur toute la page avec notification discrète
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showProtectionToast();
+        });
+
+        // Double sécurité : Bloquer le drag & drop (glisser l'image vers le bureau)
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+        });
+
+        // Fonction pour faire apparaître et disparaître la bulle d'alerte
+        let toastTimeout;
+        function showProtectionToast() {
+            const toast = document.getElementById('protection-toast');
+            toast.classList.add('show');
+            
+            // Réinitialise le timer si l'utilisateur reclique rapidement
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500); // Reste visible 2,5 secondes
+        }
+    </script>
 
 </body>
 </html>
