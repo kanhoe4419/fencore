@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fen Core</title>
+    <title>Fen Core - Portfolio</title>
+    <!-- Importation d'une police ultra moderne et épurée -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES DE COULEURS (Rouge doux et sombre) --- */
         :root {
-            --bg-color: #121212;       /* Fond anthracite très sombre */
-            --card-bg: #1a1a1a;        /* Fond des cases d'artworks */
-            --text-color: #e0e0e0;     /* Texte blanc cassé doux */
-            --accent-red: #b32424;     /* Rouge principal (bordeaux / brique) */
-            --hover-red: #e63946;      /* Rouge plus vif au survol */
+            --bg-color: #0a0a0a;       /* Fond encore plus sombre et moderne */
+            --card-bg: #121212;        /* Fond des cases d'artworks */
+            --text-color: #e5e5e5;     /* Texte blanc cassé doux */
+            --text-muted: #8c8c8c;     /* Texte secondaire gris */
+            --accent-red: #a81c1c;     /* Rouge principal élégant */
+            --hover-red: #e62e2e;      /* Rouge plus vif au survol */
         }
 
-        /* --- SENSE GLOBAL --- */
+        /* --- STYLE GLOBAL --- */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +27,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
@@ -33,7 +38,7 @@
         a {
             color: inherit;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         /* --- HEADER --- */
@@ -41,21 +46,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 4rem;
-            border-bottom: 1px solid rgba(179, 36, 36, 0.2); /* Ligne rouge très subtile */
+            padding: 2.5rem 4rem;
+            border-bottom: 1px solid rgba(168, 28, 28, 0.15); /* Ligne rouge très subtile */
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
         .contact-link a {
             color: var(--accent-red);
-            font-weight: 600;
+            font-weight: 500;
             border-bottom: 1px solid transparent;
+            font-size: 0.95rem;
         }
 
         .contact-link a:hover {
@@ -63,66 +69,128 @@
             border-bottom: 1px solid var(--hover-red);
         }
 
-        /* --- PORTFOLIO (GRID) --- */
+        /* --- SECTION STRUCTURE --- */
         main {
             flex: 1;
             padding: 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
         }
 
+        .portfolio-section {
+            margin-bottom: 6rem; /* Grand espace pour faire respirer les deux projets */
+        }
+
+        /* Titres des sections */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300; /* Style fin et haut de gamme */
+            letter-spacing: 1px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        /* Petite barre verticale rouge à gauche des titres */
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            height: 70%;
+            width: 3px;
+            background-color: var(--accent-red);
+        }
+
+        /* Étiquette "Projet en cours" */
+        .badge {
+            background-color: rgba(168, 28, 28, 0.1);
+            border: 1px solid rgba(168, 28, 28, 0.4);
+            color: var(--hover-red);
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-description {
+            color: var(--text-muted);
+            margin-top: -1.5rem;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        /* --- PORTFOLIO (GRID) --- */
         .portfolio-grid {
             display: grid;
-            /* Crée 5 colonnes égales sur grand écran */
-            grid-template-columns: repeat(7, 1fr); 
-            gap: 20px; /* Espace entre les cases */
+            grid-template-columns: repeat(5, 1fr); /* Toujours 5 colonnes sur grand écran */
+            gap: 24px;
             width: 100%;
         }
 
         .artwork-item {
             background-color: var(--card-bg);
-            /* Respecte le ratio 3:4 de tes artworks (3000x4000) */
-            aspect-ratio: 3 / 4; 
+            aspect-ratio: 3 / 4; /* Conserve ton format vertical 3000x4000px */
             border-radius: 4px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
         }
 
-        /* Effet de zoom soft au survol de la case */
+        /* Effet élégant au survol */
         .artwork-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-red);
+            transform: translateY(-8px);
+            border-color: rgba(168, 28, 28, 0.6);
         }
 
         .artwork-item img {
             width: 100%;
             height: 100%;
-            /* Empêche l'image de se déformer si elle n'est pas au format 3:4 */
-            object-fit: cover; 
+            object-fit: cover; /* Recadre l'image sans la déformer si elle n'a pas le même format */
             display: block;
         }
 
         /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 2rem;
-            font-size: 0.85rem;
-            color: #666;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #444;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            margin-top: auto;
         }
 
-        /* --- RESPONSIVE (Pour que ça reste beau sur mobile et tablette) --- */
-        @media (max-width: 1200px) {
-            .portfolio-grid { grid-template-columns: repeat(3, 1fr); } /* 3 par ligne sur tablette */
+        /* --- RESPONSIVE (Adaptation mobiles et tablettes) --- */
+        @media (max-width: 1400px) {
+            .portfolio-grid { grid-template-columns: repeat(4, 1fr); } /* 4 par ligne */
+        }
+
+        @media (max-width: 1100px) {
+            .portfolio-grid { grid-template-columns: repeat(3, 1fr); } /* 3 par ligne */
             header, main { padding: 2rem; }
         }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; text-align: center; }
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); } /* 2 par ligne sur grand mobile */
+            header { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } /* 2 par ligne */
+            .section-title { font-size: 1.8rem; }
         }
 
         @media (max-width: 480px) {
-            .portfolio-grid { grid-template-columns: 1fr; } /* 1 seule colonne sur petit mobile */
+            .portfolio-grid { grid-template-columns: 1fr; } /* 1 par ligne sur tout petit écran */
         }
     </style>
 </head>
@@ -130,29 +198,54 @@
 
     <header>
         <div class="logo">Fen Core</div>
-        <div class="contact-link">Contact me on <a href="https://instagram.com/fen.core" target="_blank">Instagram</a></div>
+        <div class="contact-link">Contact me on <a href="https://instagram.com/TON_PSEUDO" target="_blank">Instagram</a></div>
     </header>
 
     <main>
-        <div class="portfolio-grid">
-            <!-- Ligne 1 (Tes 5 premiers artworks) -->
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 1"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 2"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 3"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 4"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 5"></div>
 
-            <!-- Répétition automatique : tu as juste à ajouter des lignes en dessous pour que ça continue à se remplir proprement par blocs de 5 -->
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 6"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 7"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 8"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 9"></div>
-            <div class="artwork-item"><img src="https://via.placeholder.com/300x400" alt="Artwork 10"></div>
-        </div>
+
+        <!-- ================= SECTION 1: IN THE NAME OF ENTERTAINMENT ================= -->
+        <section class="portfolio-section">
+            <div class="section-header">
+                <h2 class="section-title">Recent works</h2>
+                <span class="badge"></span>
+            </div>
+            <p class="section-description">Personal projects, character designs and fanarts</p>
+            
+            <div class="portfolio-grid">
+                <!-- Placeholders temporaires pour ton nouveau projet pendant que tu le taffes -->
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+1" alt="Project Artwork 1"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+2" alt="Project Artwork 2"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+3" alt="Project Artwork 3"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+4" alt="Project Artwork 4"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/333333?text=WIP+5" alt="Project Artwork 5"></div>
+            </div>
+        </section>
+
+        
+        <!-- ================= SECTION 2: ENHYPEN ================= -->
+        <section class="portfolio-section">
+            <div class="section-header">
+                <h2 class="section-title">Enhypen</h2>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Tu as juste à remplacer les liens de placeholders ci-dessous par tes vrais artworks Enhypen ! -->
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+1" alt="Enhypen Artwork 1"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+2" alt="Enhypen Artwork 2"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+3" alt="Enhypen Artwork 3"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+4" alt="Enhypen Artwork 4"></div>
+                <div class="artwork-item"><img src="https://via.placeholder.com/300x400/121212/a81c1c?text=Enhypen+5" alt="Enhypen Artwork 5"></div>
+                
+                <!-- Tu peux en rajouter autant que tu veux ici, la grille se remplira automatiquement -->
+            </div>
+        </section>
+
+
     </main>
 
     <footer>
-        <p>© Fen Core</p>
+        <p>crédits fen core</p>
     </footer>
 
 </body>
