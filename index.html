@@ -275,7 +275,8 @@
                 <div class="artwork-item"><img src="https://i.imgur.com/4u3W4PT.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/yvcf3M9.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/c57kY5l.jpeg" alt="Enhypen Artwork"></div>
-                <div class="artwork-item"><img src="https://i.imgur.com/DvBIdTG.jpeg" alt="Enhypen Artwork"></div> dd
+                <div class="artwork-item"><img src="https://i.imgur.com/DvBIdTG.jpeg" alt="Enhypen Artwork"></div>
+                <div class="artwork-item"><img src="https://i.imgur.com/Py4ENLE.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/8uncdV7.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/muMlDra.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/tsYZ8QA.jpeg" alt="Enhypen Artwork"></div>
@@ -286,7 +287,6 @@
                 <div class="artwork-item"><img src="https://i.imgur.com/cASD6NT.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/S54YPIV.jpeg" alt="Enhypen Artwork"></div>
                 <div class="artwork-item"><img src="https://i.imgur.com/BBFIV7L.jpeg" alt="Enhypen Artwork"></div>
-                <div class="artwork-item"><img src="https://i.imgur.com/Py4ENLE.jpeg" alt="Enhypen Artwork"></div>
             </div>
         </section>
 
@@ -297,34 +297,30 @@
         <p>© Fen Core</p>
     </footer>
 
-    <!-- Message d'alerte discret de protection -->
-    <div id="protection-toast" class="toast">© Artworks protégés par copyright — Fen Core</div>
+
+    <div id="protection-toast" class="toast">© Protected artworks - Look don't touch ♡</div>
 
     <script>
-        // Bloquer le clic droit sur toute la page avec notification discrète
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             showProtectionToast();
         });
 
-        // Double sécurité : Bloquer le drag & drop (glisser l'image vers le bureau)
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('dragstart', function(e) {
                 e.preventDefault();
             });
         });
 
-        // Fonction pour faire apparaître et disparaître la bulle d'alerte
         let toastTimeout;
         function showProtectionToast() {
             const toast = document.getElementById('protection-toast');
             toast.classList.add('show');
             
-            // Réinitialise le timer si l'utilisateur reclique rapidement
             clearTimeout(toastTimeout);
             toastTimeout = setTimeout(() => {
                 toast.classList.remove('show');
-            }, 2500); // Reste visible 2,5 secondes
+            }, 2500);
         }
     </script>
 
